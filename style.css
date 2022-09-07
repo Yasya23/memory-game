@@ -71,3 +71,7 @@ body {
 .icon-link:hover {
   text-decoration: underline;
 }
+
+.hide {
+  visibility: hidden;
+}
