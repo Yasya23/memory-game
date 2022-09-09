@@ -1,6 +1,9 @@
+"use strict";
+
 const cards = document.querySelectorAll(".game__card");
 const winMessage = document.querySelector(".game__win");
 const newGameButton = document.querySelector(".game__button");
+const linkSteakersSite = document.querySelector(".link");
 
 let flippedCard = false;
 let firstCard = null;
@@ -9,6 +12,8 @@ let lockBoard = false;
 let cardSum = 0;
 
 function flipCard() {
+  removeLink();
+
   if (this === firstCard || lockBoard === true) {
     return;
   }
@@ -25,14 +30,14 @@ function flipCard() {
   checkForMatch();
 }
 
+function removeLink() {
+  linkSteakersSite.classList.add("hide");
+}
+
 function checkForMatch() {
   const card1 = firstCard.dataset.framework;
   const card2 = secondCard.dataset.framework;
-  if (card1 === card2) {
-    removeCards();
-  } else {
-    unflipCards();
-  }
+  card1 === card2 ? removeCards() : unflipCards();
 }
 
 function removeCards() {
@@ -41,7 +46,9 @@ function removeCards() {
     firstCard.classList.add("hide");
     secondCard.classList.add("hide");
     cardSum += 2;
-    winGame(cardSum);
+    if (cardSum === 16) {
+      openWinMesage(cardSum);
+    }
     resetHistory();
   }, 500);
 }
@@ -62,18 +69,17 @@ function resetHistory() {
   lockBoard = false;
 }
 
-function winGame() {
+function openWinMesage() {
   setTimeout(() => {
-    if (cardSum === 2) {
-      winMessage.classList.add("block");
-    }
+    winMessage.classList.add("block");
   }, 500);
 }
 
-function newGame() {
+function restartGame() {
   setTimeout(() => {
     winMessage.classList.remove("block");
     cards.forEach((card) => card.classList.remove("hide", "flip"));
+    linkSteakersSite.classList.remove("hide");
   }, 500);
 }
 
@@ -85,4 +91,4 @@ function newGame() {
 })();
 
 cards.forEach((card) => card.addEventListener("click", flipCard));
-newGameButton.addEventListener("click", newGame);
+newGameButton.addEventListener("click", restartGame);

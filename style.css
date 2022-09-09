@@ -4,6 +4,7 @@
   --front-card-background: #ffffff;
   --back-card-background: url(img/background.svg);
   --link-color: #bcbeb6;
+  --button-color: rgb(200, 255, 177);
 }
 
 * {
@@ -42,11 +43,9 @@ body {
   width: 23%;
   height: auto;
   margin: 0.3rem;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
   transform-style: preserve-3d;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .game__card.flip {
@@ -55,7 +54,6 @@ body {
 
 .game__img-back,
 .game__img {
-  /* visibility: hidden; */
   position: absolute;
   width: 100%;
   border-radius: 1rem;
@@ -64,8 +62,8 @@ body {
 }
 
 .game__img {
-  background-color: var(--front-card-background);
   transform: rotateY(180deg);
+  background-color: var(--front-card-background);
 }
 
 .game__img-back {
@@ -76,16 +74,16 @@ body {
 .game__win {
   display: none;
   position: absolute;
-  top: 0%;
+  top: 25%;
   left: 40%;
 }
 
 .game__text-win {
   position: absolute;
-  font-size: 2rem;
-  color: rgb(255, 255, 255);
   top: 6.2rem;
   left: 0.2rem;
+  font-size: 2rem;
+  color: var(--front-card-background);
 }
 
 .game__button {
@@ -96,23 +94,24 @@ body {
   border-radius: 0.6rem;
   border: none;
   font-size: 1.2rem;
+  background-color: var(--button-color);
   color: var(--border-card-color);
-  background-color: rgb(200, 255, 177);
 }
 
 .game__button:hover {
   background-color: var(--background-color);
-  outline: 2px solid rgb(200, 255, 177);
-  color: rgb(200, 255, 177);
+  outline: 2px solid var(--button-color);
+  color: var(--button-color);
 }
+
 .link {
   text-align: center;
 }
 
 .link a {
   text-decoration: none;
-  color: var(--link-color);
   font-size: 0.9rem;
+  color: var(--link-color);
 }
 
 .link:hover {
