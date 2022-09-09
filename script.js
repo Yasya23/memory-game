@@ -1,9 +1,10 @@
 const cards = document.querySelectorAll(".game__card");
+const winMessage = document.querySelector(".game__win");
+const newGameButton = document.querySelector(".game__button");
 
 let flippedCard = false;
 let firstCard = null;
 let secondCard = null;
-let thirdCard = null;
 let lockBoard = false;
 let cardSum = 0;
 
@@ -21,19 +22,13 @@ function flipCard() {
   }
 
   secondCard = this;
-  thirdCard = this;
-
   checkForMatch();
 }
 
-function restartGame() {
-  if (cardSum === 16) {
-    alert("Ok");
-  }
-}
-
 function checkForMatch() {
-  if (firstCard.dataset.framework === secondCard.dataset.framework) {
+  const card1 = firstCard.dataset.framework;
+  const card2 = secondCard.dataset.framework;
+  if (card1 === card2) {
     removeCards();
   } else {
     unflipCards();
@@ -46,9 +41,9 @@ function removeCards() {
     firstCard.classList.add("hide");
     secondCard.classList.add("hide");
     cardSum += 2;
-    resetSteps();
-    restartGame(cardSum);
-  }, 1000);
+    winGame(cardSum);
+    resetHistory();
+  }, 500);
 }
 
 function unflipCards() {
@@ -56,16 +51,30 @@ function unflipCards() {
   setTimeout(() => {
     firstCard.classList.remove("flip");
     secondCard.classList.remove("flip");
-    resetSteps();
-  }, 1000);
+    resetHistory();
+  }, 500);
 }
 
-function resetSteps() {
+function resetHistory() {
   flippedCard = false;
-  firstCard = thirdCard;
+  firstCard = null;
   secondCard = null;
   lockBoard = false;
-  console.log(cards.length);
+}
+
+function winGame() {
+  setTimeout(() => {
+    if (cardSum === 2) {
+      winMessage.classList.add("block");
+    }
+  }, 500);
+}
+
+function newGame() {
+  setTimeout(() => {
+    winMessage.classList.remove("block");
+    cards.forEach((card) => card.classList.remove("hide", "flip"));
+  }, 500);
 }
 
 (function mixCards() {
@@ -76,3 +85,4 @@ function resetSteps() {
 })();
 
 cards.forEach((card) => card.addEventListener("click", flipCard));
+newGameButton.addEventListener("click", newGame);

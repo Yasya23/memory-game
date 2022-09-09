@@ -1,3 +1,11 @@
+:root {
+  --background-color: #5c5262;
+  --border-card-color: #121013;
+  --front-card-background: #ffffff;
+  --back-card-background: url(img/background.svg);
+  --link-color: #bcbeb6;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,31 +15,36 @@
 body {
   display: flex;
   height: 100vh;
-  background-color: #5c5262;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background-color);
+}
+
+.wrapper {
+  margin: auto;
+  padding: 0.5rem;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: #00000000;
 }
 
 .game {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   flex-wrap: wrap;
-  width: 500px;
-  height: 500px;
-  margin: auto;
-  padding: 10px;
-  background-color: #ffffff;
-  border-radius: 5%;
-  perspective: 1000px;
+  width: 37rem;
+  height: 37rem;
+  border-radius: 0.3rem;
+  perspective: 63rem;
 }
 
 .game__card {
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin: 5px;
-  border-radius: 15%;
-  border: 1.5px solid #5c5262;
+  width: 23%;
+  height: auto;
+  margin: 0.3rem;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
   transform-style: preserve-3d;
   transition: transform 0.2s;
 }
@@ -42,36 +55,74 @@ body {
 
 .game__img-back,
 .game__img {
+  /* visibility: hidden; */
   position: absolute;
   width: 100%;
-  height: 100%;
-  user-select: none;
+  border-radius: 1rem;
+  border: 1.5px solid var(--border-card-color);
   backface-visibility: hidden;
 }
 
 .game__img {
+  background-color: var(--front-card-background);
   transform: rotateY(180deg);
 }
 
 .game__img-back {
-  border-radius: 15%;
-  background-image: url(img/background.svg);
+  background-image: var(--back-card-background);
   background-size: cover;
-  overflow: hidden;
 }
 
-.icon-link {
+.game__win {
+  display: none;
   position: absolute;
-  bottom: -25px;
-  text-decoration: none;
-  color: #bcbeb6;
-  user-select: none;
+  top: 0%;
+  left: 40%;
 }
 
-.icon-link:hover {
+.game__text-win {
+  position: absolute;
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  top: 6.2rem;
+  left: 0.2rem;
+}
+
+.game__button {
+  position: absolute;
+  top: 9rem;
+  left: 0.2rem;
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--border-card-color);
+  background-color: rgb(200, 255, 177);
+}
+
+.game__button:hover {
+  background-color: var(--background-color);
+  outline: 2px solid rgb(200, 255, 177);
+  color: rgb(200, 255, 177);
+}
+.link {
+  text-align: center;
+}
+
+.link a {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 0.9rem;
+}
+
+.link:hover {
   text-decoration: underline;
 }
 
 .hide {
   visibility: hidden;
+}
+
+.block {
+  display: block;
 }
