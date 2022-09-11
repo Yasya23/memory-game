@@ -80,15 +80,20 @@ function restartGame() {
     winMessage.classList.remove("block");
     cards.forEach((card) => card.classList.remove("hide", "flip"));
     linkSteakersSite.classList.remove("hide");
+    cardSum=0;
+    mixCards();
   }, 500);
 }
 
-(function mixCards() {
+function mixCards() {
   cards.forEach((card) => {
     const position = Math.floor(Math.random() * 12);
     card.style.order = position;
   });
-})();
+};
+
+mixCards();
 
 cards.forEach((card) => card.addEventListener("click", flipCard));
 newGameButton.addEventListener("click", restartGame);
+

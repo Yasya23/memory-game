@@ -42,8 +42,8 @@ body {
 }
 
 .game__card {
-  width: 100%;
   position: relative;
+  width: 100%;
   transform-style: preserve-3d;
   transition: transform 0.2s;
   cursor: pointer;
@@ -135,6 +135,7 @@ body {
   }
 
   .game__win {
-    left: 35%;
+    left: 33%;
   }
 }
+
