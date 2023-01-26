@@ -2,7 +2,7 @@
   --background-color: #5c5262;
   --border-card-color: #121013;
   --front-card-background: #ffffff;
-  --back-card-background: url(img/background.svg);
+  --back-card-background: url(../img/background.svg);
   --link-color: #bcbeb6;
   --button-color: rgb(200, 255, 177);
 }
@@ -98,6 +98,7 @@ body {
   font-size: 1.2rem;
   background-color: var(--button-color);
   color: var(--border-card-color);
+  cursor:pointer;
 }
 
 .game__button:hover {
